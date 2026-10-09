@@ -5,12 +5,16 @@ Une section par test en échec : renseignez ses quatre champs.
 ## testAddingALineToAnUnknownOrderIsNotFound
 
 **Symptôme** :
+L'API recoit un code 200, le jeton de renouvellement marche plusieurs fois
 
 **Cause** :
+config/packages/gesdinet_jwt_refresh_token.yaml:5
 
 **Règle du module en jeu** :
+Le second appel avec le meme token est refusé
 
 **Correctif** :
+signle use false -> true, pour dire que le jeton ne peut etre utlisé qu'une fois
 
 ## testAddingALineToAPaidOrderIsAConflict
 
