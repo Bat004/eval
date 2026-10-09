@@ -1,29 +1,14 @@
-# CodaEats
+CodaEats
+API de commande de repas (Symfony, API Platform, FrankenPHP, PostgreSQL), servie par Docker.
 
-Les consignes de l'évaluation sont sur la page
-[Évaluation du module](https://school.adriengras.fr/docs/coda/b2/api-developpement/evaluation).
+Installation
+Installer Docker Compose (v2.10 ou plus).
+make start construit les images, démarre les conteneurs et génère la paire de clés JWT(make jwt, les clés ne sont pas versionnées).
+make sf c="doctrine:migrations:migrate -n" applique le schéma, puismake sf c="doctrine:fixtures:load -n" charge les comptes de test.
+L'API répond sur https://localhost (certificat auto-signé à accepter) ; la documentation
+OpenAPI est sur https://localhost/api/docs.
 
-## Installation
+Les comptes de test sont alice@example.fr, bob@example.fr et camille.aubert@example.fr,
+mot de passe motdepasse.
 
-Installez [Docker Compose](https://docs.docker.com/compose/install/) (v2.10 ou plus), puis, à la
-racine du dépôt :
-
-```bash
-make start
-make sf c="doctrine:fixtures:load -n"
-```
-
-`make start` construit les images, démarre les conteneurs, applique les migrations et génère la
-paire de clés JWT. La seconde commande charge les comptes de démonstration (`alice@example.fr`,
-`bob@example.fr`, `camille.aubert@example.fr`, mot de passe `motdepasse`). L'API répond sur
-`https://localhost` (certificat auto-signé à accepter), sa documentation sur
-`https://localhost/api/docs`.
-
-## Lancer les tests
-
-```bash
-make test
-```
-
-La base de test est recréée à chaque lancement. Pour cibler une classe :
-`make test c="--filter OrderTest"`.
+make test lance la suite de tests, make down arrête les conteneurs.
